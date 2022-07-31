@@ -10,7 +10,7 @@ const Layout=()=> {
 
   useEffect(()=>{
     async function fetchData() {
-      let request = await fetch("http://127.0.0.1:8000/getflights/");
+      let request = await fetch("https://tmw-my-server.azurewebsites.net/getflights/");
       let response = await request.json();
       console.log(response)
       dispatch(setFlights((response)));
