@@ -13,7 +13,7 @@ const ShowFlights = () => {
   const nav = useNavigate()
 const reset = ()=>{
   dispatch(setShowFlights([]))
-  window.location.href='/'
+  nav('/')
 };
 
 
