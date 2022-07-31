@@ -1,36 +1,44 @@
 import React from 'react'
-import {   useSelector } from 'react-redux';
+import {   useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { selectCustomer } from '../plahim/customerSlice';
-import { selectChosenFlight } from '../plahim/flightsSlice';
+import { selectChosenFlight, setFlights } from '../plahim/flightsSlice';
 import { selectUser } from '../plahim/userSlice';
 
 const TicketFinal = () => {
+    const dispatch = useDispatch()
     const nav =useNavigate()
     const flight = useSelector(selectChosenFlight)
     const user = useSelector(selectUser)
     const customer = useSelector(selectCustomer)
 
-  const createTicket = async ()=>{
+
+const refreshFlights= async ()=>{
+    let request = await fetch("https://tmw-my-server.azurewebsites.net/getflights/");
+    let response = await request.json();
+    dispatch(setFlights((response)));
+};
+const createTicket = async ()=>{
     let token = localStorage.getItem('token')
-     let ticket = await fetch('https://tmw-my-server.azurewebsites.net/tickets/',{
+    let ticket = await fetch('https://tmw-my-server.azurewebsites.net/tickets/',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization:"Bearer "+String(token)
         },
-    body:JSON.stringify({
-      flight_id:flight.id,
-      customer_id: customer.id
-   })});
+        body:JSON.stringify({
+            flight_id:flight.id,
+            customer_id: customer.id
+        })});
    let response = await ticket.json();
    if(response.message === 'CREATED'){
-    nav('/myTickets')
+     refreshFlights();
+     nav('/myTickets')
    }else{
     alert(response.message)
     nav('/')
    }
-  };
+};
     
     
   return (
