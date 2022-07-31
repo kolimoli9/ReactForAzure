@@ -1,15 +1,13 @@
 import { React, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {  selectFlights, selectShowFlights, setShowFlights } from "../../plahim/flightsSlice";
-import axios from 'axios';
+import {  selectFlights,  setShowFlights } from "../../plahim/flightsSlice";
 
 
 const Home = () => {
     const nav = useNavigate()
     const dispatch = useDispatch()
     const flights = useSelector(selectFlights)
-    const ShowFlights = useSelector(selectShowFlights)
 
     const [From, setFrom] = useState("ISRAEL")
     const [To, setTo] = useState("ENGLAND")

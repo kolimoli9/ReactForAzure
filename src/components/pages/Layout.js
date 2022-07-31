@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, setTheUser} from '../../plahim/userSlice'
 import { setCustomer } from '../../plahim/customerSlice';
 import { setFlights } from '../../plahim/flightsSlice';
-import axios from 'axios';
 const Layout=()=> { 
   const dispatch = useDispatch()
   const user = useSelector(selectUser)

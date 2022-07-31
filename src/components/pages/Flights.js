@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { selectCustomer, setCustomer } from '../../plahim/customerSlice';
-import {  selectFlights, setChosenFlight, setFlights } from '../../plahim/flightsSlice';
+import {  selectFlights, setChosenFlight } from '../../plahim/flightsSlice';
 import { selectUser } from '../../plahim/userSlice';
 const Flights = () => {
 
@@ -14,15 +14,8 @@ const Flights = () => {
     const flights=useSelector(selectFlights)
     const dispatch = useDispatch()
    
-useEffect(()=>{
-  async function fetchData() {
-    let request = await fetch("http://127.0.0.1:8000/getflights/");
-    let response = await request.json();
-    dispatch(setFlights((response)));
-  }
-    
-    },[flights,dispatch])
-    
+
+
     const getCustomer = (flight)=>{
       if(customer===null){
         dispatch(setChosenFlight(flight));
