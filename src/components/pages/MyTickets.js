@@ -19,7 +19,7 @@ const MyTickets = () => {
 
   const pretytickets = async () => {
     if (tickets.length === 0) {
-      axios.get(`http://127.0.0.1:8000/MyTicket/${customer.id}`, config).then((response) => {
+      axios.get(`https://tmw-my-server.azurewebsites.net/MyTicket/${customer.id}`, config).then((response) => {
         dispatch(setTickets(response.data.tickets))
       })
     }

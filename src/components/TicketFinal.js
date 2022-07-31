@@ -13,7 +13,7 @@ const TicketFinal = () => {
 
   const createTicket = async ()=>{
     let token = localStorage.getItem('token')
-     let ticket = await fetch('http://127.0.0.1:8000/tickets/',{
+     let ticket = await fetch('https://tmw-my-server.azurewebsites.net/tickets/',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -3,7 +3,7 @@ const Register = () => {
    const [staffRequested, setstaffRequested] = useState('False')
   const register =async()=>{
     if(document.getElementById('password').value===document.getElementById('password2').value){ 
-    let rgisteration = await fetch('http://127.0.0.1:8000/register/',{
+    let rgisteration = await fetch('https://tmw-my-server.azurewebsites.net/register/',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
         body:JSON.stringify({

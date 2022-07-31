@@ -15,7 +15,7 @@ const Contact = () => {
       NAME:document.getElementById('NAME').value,
       MESSAGE:document.getElementById('MESSAGE').value,
     }
-     axios.post('http://127.0.0.1:8000/contact/',DATA).then((response)=>{alert(response.data.message);nav('/');})
+     axios.post('https://tmw-my-server.azurewebsites.net/contact/',DATA).then((response)=>{alert(response.data.message);nav('/');})
     
   };
 
