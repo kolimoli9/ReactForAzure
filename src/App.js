@@ -12,7 +12,6 @@ import CustomerInput from "./components/CustomerInput";
 import TicketFinal from "./components/TicketFinal";
 import ShowFlights from './components/ShowFlights';
 import Airline from './components/pages/staff/Airline';
-import Admin from './components/pages/staff/Admin'
 import MyTickets from './components/pages/MyTickets';
 const App = ()=> {
 
@@ -31,7 +30,6 @@ const App = ()=> {
             <Route path="flights/customerInfo" element={<CustomerInput />} />
             <Route path="flights/ticketFinal" element={<TicketFinal />} />
             <Route path="airline" element={<Airline />} />
-            <Route path="admin" element={<Admin />} />
             <Route path='myTickets' element={<MyTickets/>}/>
             <Route path="*" element={<NoPage />} />
           </Route>

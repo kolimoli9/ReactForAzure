@@ -12,7 +12,7 @@ const Login = () => {
 	const [Checkbox, setCheckbox] = useState(false)
 	
 	const getlogin = async () => {
-        let response = await fetch("https://tmw-my-server.azurewebsites.net/login/", {
+        let response = await fetch("http://127.0.0.1:8000/login/", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -36,8 +36,10 @@ const Login = () => {
 				last_name:decodedToken.last_name,
 			}
 			if(decodedToken.airline){
-				newUser['airline']=decodedToken.airline
-			}
+				newUser['airline']=decodedToken.airline}
+			if(decodedToken.is_admin){
+				newUser['is_admin']=decodedToken.is_admin
+			}	
             if(Checkbox){localStorage.setItem('user',JSON.stringify(newUser))};
             dispatch(setTheUser(newUser));
 			nav("/")

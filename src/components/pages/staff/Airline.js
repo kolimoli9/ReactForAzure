@@ -3,6 +3,7 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../../plahim/userSlice';
 import { selectChosenFlight, selectFlights, setChosenFlight, setFlights } from '../../../plahim/flightsSlice';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Airline = () => {
 // Utils
@@ -28,14 +29,14 @@ const Airline = () => {
 // 
 
   const refreshFlights= async ()=>{
-      let request = await fetch("https://tmw-my-server.azurewebsites.net/getflights/");
+      let request = await fetch("http://127.0.0.1:8000/getflights/");
       let response = await request.json();
       dispatch(setFlights((response)));
       setAirlineFlights([]);
 };
 
   const deleteFlight =async (flight)=>{
-     axios.delete(`https://tmw-my-server.azurewebsites.net/flights/${flight.id}`,config).then((response)=>{alert(JSON.stringify(response.data))});
+     axios.delete(`http://127.0.0.1:8000/flights/${flight.id}`,config).then((response)=>{alert(JSON.stringify(response.data))});
      refreshFlights();
 };
   
@@ -46,7 +47,7 @@ const Airline = () => {
       dep_time:dep_time,
       arrival_time:arrival_time,
       tickets:tickets})
-      axios.put(`https://tmw-my-server.azurewebsites.net/flights/${flight.id}`,data,config).then((response)=>{
+      axios.put(`http://127.0.0.1:8000/flights/${flight.id}`,data,config).then((response)=>{
        if(response.status===200){
         alert(response.data.message)
         setUpdate(false);
@@ -66,7 +67,7 @@ const Airline = () => {
       dep_time:dep_time,
       arrival_time:arrival_time,
       tickets:tickets})
-      axios.post('https://tmw-my-server.azurewebsites.net/flights/',data,config).then((response)=>{
+      axios.post('http://127.0.0.1:8000/flights/',data,config).then((response)=>{
        if(response.status===200){
         alert(response.data.message)
         setOriginC('');
@@ -97,7 +98,7 @@ const Airline = () => {
     console.log(' Airline useEffect Run+')
   }
   },[AirlineFlights,flights,user]) 
-
+if(user.airline){
   return (
     <div>
     <div className='shadow-lg p-3 mb-5 bg-body rounded'>
@@ -404,6 +405,15 @@ const Airline = () => {
                 ):('')}
         </div>
   )
-}
+}else{
+    return(
+        <div style={{position:'absolute',left:'40%',top:'40%'}}>
+      <Link className='btn btn-danger'style={{color:'black'}} to={'/'}>Unauthorized</Link>
+      <br></br>
+      <br></br>
+      <h1 className='text text-danger' style={{paddingLeft:80}}>401</h1>
+    </div>
+    )
+}}
 
 export default Airline
