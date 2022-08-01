@@ -56,7 +56,7 @@ useEffect(() => {
   async function fetchUsers(){
     const token = localStorage.getItem('token')
     const config={headers:{"Content-Type": "application/json",Authorization:"Bearer "+String(token)}}
-    axios.get('http://127.0.0.1:8000/users/',config).then((response)=>{
+    axios.get('https://tmw-my-server.azurewebsites.net/users/',config).then((response)=>{
         if(response.status===200){
         console.log(response.data); setUsers(response.data)}else{console.log(response)}
     })    
@@ -75,7 +75,7 @@ useEffect(() => {
        is_superuser : Admin, 
        airline_name : airlineName
     })
-    axios.put(`http://127.0.0.1:8000/users/${ChosenUser.id}`,data,config).then((response)=>{
+    axios.put(`https://tmw-my-server.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
         console.log(response.data)
     })
     setEdit(false);
@@ -88,7 +88,7 @@ useEffect(() => {
 }; 
 
   const DeleteUser = async (User)=>{
-    axios.delete(`http://127.0.0.1:8000/users/${User.id}`,config).then((response)=>{
+    axios.delete(`https://tmw-my-server.azurewebsites.net/users/${User.id}`,config).then((response)=>{
         console.log(alert(response.data.message))
     });
     setTimeout(function(){ setUsers([]) }, 5000);

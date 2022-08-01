@@ -12,7 +12,7 @@ const Login = () => {
 	const [Checkbox, setCheckbox] = useState(false)
 	
 	const getlogin = async () => {
-        let response = await fetch("http://127.0.0.1:8000/login/", {
+        let response = await fetch("https://tmw-my-server.azurewebsites.net/login/", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
