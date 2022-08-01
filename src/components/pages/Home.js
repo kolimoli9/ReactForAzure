@@ -34,7 +34,6 @@ const Home = () => {
 // FUNCTIONS 
     const showFlights= async ()=>{
         flights.forEach(flight => {
-            console.log(flight)
             if(flight.from === From && flight.too===To){
                 ChosenFlights.push(flight)
             }if(flight.from !== From && flight.too===To){
@@ -50,7 +49,6 @@ const Home = () => {
             dispatch(setShowFlights(ChosenFlights))
             nav('/showFlights')
             }
-            console.log(ChosenFlights)
             };
 useEffect(() => {
   async function fetchUsers(){
@@ -58,7 +56,7 @@ useEffect(() => {
     const config={headers:{"Content-Type": "application/json",Authorization:"Bearer "+String(token)}}
     axios.get('https://tmw-my-server.azurewebsites.net/users/',config).then((response)=>{
         if(response.status===200){
-        console.log(response.data); setUsers(response.data)}else{console.log(response)}
+        setUsers(response.data)}else{console.log(response)}
     })    
     };
     if(user.is_admin && Users.length===0){
@@ -76,7 +74,7 @@ useEffect(() => {
        airline_name : airlineName
     })
     axios.put(`https://tmw-my-server.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
-        console.log(response.data)
+        alert(response.data.message)
     })
     setEdit(false);
     setAdmin(false);
@@ -89,9 +87,9 @@ useEffect(() => {
 
   const DeleteUser = async (User)=>{
     axios.delete(`https://tmw-my-server.azurewebsites.net/users/${User.id}`,config).then((response)=>{
-        console.log(alert(response.data.message))
+     alert(response.data.message)
     });
-    setTimeout(function(){ setUsers([]) }, 5000);
+    setTimeout(function(){ setUsers([]) }, 10000);
     ;
 };
 

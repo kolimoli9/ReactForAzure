@@ -12,7 +12,6 @@ const Layout=()=> {
     async function fetchData() {
       let request = await fetch("https://tmw-my-server.azurewebsites.net/getflights/");
       let response = await request.json();
-      console.log(response)
       dispatch(setFlights((response)));
     }
      fetchData()},[dispatch])
