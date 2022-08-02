@@ -82,15 +82,15 @@ useEffect(() => {
     setAirlineName('');
     setUsername('');
     setEmail('');
-    setUsers([]);
+    setTimeout(function(){ setUsers([]) }, 5000);
 }; 
 
   const DeleteUser = async (User)=>{
     axios.delete(`https://tmw-my-server.azurewebsites.net/users/${User.id}`,config).then((response)=>{
-     alert(response.data.message)
+     alert(response.data.message)    
+     setTimeout(function(){ setUsers([]) }, 3000);
     });
-    setTimeout(function(){ setUsers([]) }, 10000);
-    ;
+    
 };
 
     return (
@@ -185,7 +185,8 @@ useEffect(() => {
   
 { Users.map(( User, index ) => {
           return (
-            <tr key={index}>
+            
+            <tr key={index}>  
               <td>{User.id}</td> 
               <td>{User.username}</td> 
               <td>{User.first_name}</td> 

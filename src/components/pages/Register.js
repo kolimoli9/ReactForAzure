@@ -3,26 +3,31 @@ import { useNavigate } from 'react-router-dom';
 const Register = () => {
     const [staffRequested, setstaffRequested] = useState('False')
     const nav = useNavigate()
-    
+    //     
 const register =async()=>{
     if(document.getElementById('password').value===document.getElementById('password2').value){ 
-    let rgisteration = await fetch('https://tmw-my-server.azurewebsites.net/register/',{
+        let rgisteration = await fetch('https://tmw-my-server.azurewebsites.net',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-        body:JSON.stringify({
-          first_name:document.getElementById('first_name').value,
-          last_name:document.getElementById('last_name').value,
-          username:document.getElementById('username').value,
-          password:document.getElementById('password').value,
-          email:document.getElementById('email').value,
-          phone:document.getElementById('phone').value,
-          is_staff: 'False',
-          staff_requested:staffRequested
-       })});
-      let response = await rgisteration.json();
-      console.log(response)
-      alert(response.message);
-      nav('/login');
+            body:JSON.stringify({
+            first_name:document.getElementById('first_name').value,
+            last_name:document.getElementById('last_name').value,
+            username:document.getElementById('username').value,
+            password:document.getElementById('password').value,
+            email:document.getElementById('email').value,
+            phone:document.getElementById('phone').value,
+            is_staff: 'False',
+            staff_requested:staffRequested
+            })});
+        let response = await rgisteration.json();
+        if(rgisteration.status===200){
+        if(staffRequested){
+            alert('REGISTERD SUCCESSFULLY \n The Site Admin Will Review Your Request For Staff Status \n You Can Browse The Site For Now !')
+        }else{
+            console.log(response)
+            alert(response.message);
+            nav('/login');
+            }}
     }else{
       alert('One of the passwords wasnt a match for the other.')
      }
