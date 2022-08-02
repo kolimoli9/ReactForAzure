@@ -43,7 +43,7 @@ const Login = () => {
             if(Checkbox){localStorage.setItem('user',JSON.stringify(newUser))};
             dispatch(setTheUser(newUser));
 			nav("/")
-		}else{alert('You are not in the system,\n please register.'); nav("/register")}
+		}else{alert('You are not in the system,\n please register.'); nav("register")}
 	};
 const RememberMe = ()=>{
 	if(Checkbox===true){

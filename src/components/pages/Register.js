@@ -19,7 +19,7 @@ const Register = () => {
       let response = await rgisteration.json();
       console.log(response)
       alert(response.message);
-      nav('/login');
+      nav('login');
     }else{
       alert('One of the passwords wasnt a match for the other.')
      }
