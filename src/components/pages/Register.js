@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
-   const [staffRequested, setstaffRequested] = useState('False')
-  const register =async()=>{
+    const [staffRequested, setstaffRequested] = useState('False')
+    const nav = useNavigate()
+    
+const register =async()=>{
     if(document.getElementById('password').value===document.getElementById('password2').value){ 
     let rgisteration = await fetch('https://tmw-my-server.azurewebsites.net/register/',{
             method: 'POST',
@@ -19,7 +22,7 @@ const Register = () => {
       let response = await rgisteration.json();
       console.log(response)
       alert(response.message);
-      nav('login');
+      nav('/login');
     }else{
       alert('One of the passwords wasnt a match for the other.')
      }
@@ -71,6 +74,15 @@ const Register = () => {
                             </div>
                         </div>
                         <div className="form-row">
+                            <div className="name">Password Agian *</div>
+                            <div className="value">
+                                <div className="input-group">
+                                <div id="liveAlertPlaceholder"></div>
+                                <input className="input--style-5" type="password" id="password2"></input>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="form-row">
                             <div className="name">Email</div>
                             <div className="value">
                                 <div className="input-group">
@@ -91,15 +103,7 @@ const Register = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="form-row">
-                            <div className="name">Password Agian *</div>
-                            <div className="value">
-                                <div className="input-group">
-                                <div id="liveAlertPlaceholder"></div>
-                                <input className="input--style-5" type="password" id="password2"></input>
-                                </div>
-                            </div>
-                        </div>
+                        
                         <div className="form-row p-t-20">
                             <label className="label label--block">What are your purpose on this site?</label>
                             <div className="p-t-15">
