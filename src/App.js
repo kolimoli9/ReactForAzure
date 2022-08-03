@@ -13,7 +13,6 @@ import TicketFinal from "./components/TicketFinal";
 import ShowFlights from './components/ShowFlights';
 import Airline from './components/pages/staff/Airline';
 import MyTickets from './components/pages/MyTickets';
-import ForgotPwd from './components/ForgotPwd';
 const App = ()=> {
 
     return (
