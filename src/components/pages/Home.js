@@ -72,7 +72,7 @@ useEffect(() => {
        is_staff : airline,
        is_superuser : Admin, 
        airline_name : airlineName
-    })
+    });console.log('airlineName : ',airlineName)
     axios.put(`https://tmw-my-server.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
         alert(response.data.message)
     })
@@ -142,8 +142,8 @@ useEffect(() => {
                                 <div className="name">Airline :</div>
                                 <div className="value">
                                     <div className="input-group">
-                                    <select className="input--style-5" defaultValue={ChosenUser.airline} onChange={(e)=>setAirlineName(e.target.value)}>
-                                        <option >Choose</option>
+                                    <select className="input--style-5" defaultValue={'None'} onChange={(e)=>setAirlineName(e.target.value)}>
+                                        <option value={'None'}>Choose</option>
                                         <option value={'El-Al'}>El-Al</option>
                                         <option value={'Arkia'}>Arkia</option>
                                         <option value={'Wizz'}>Wizz </option>
@@ -184,6 +184,7 @@ useEffect(() => {
 <tbody>
   
 { Users.map(( User, index ) => {
+    console.log(User)
           return (
             
             <tr key={index}>  
