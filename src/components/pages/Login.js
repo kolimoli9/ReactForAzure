@@ -3,6 +3,7 @@ import  jwt_decode  from "jwt-decode";
 import {  useDispatch} from 'react-redux';
 import { setTheUser} from '../../plahim/userSlice';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const Login = () => {
     const [username, setUsername] = useState("")
@@ -10,6 +11,7 @@ const Login = () => {
     const dispatch = useDispatch();
 	const nav = useNavigate();
 	const [Checkbox, setCheckbox] = useState(false)
+	const [resetEmail, setResetEmail] = useState('')
 	
 	const getlogin = async () => {
         let response = await fetch("https://tmw-my-server.azurewebsites.net/login/", {
@@ -52,11 +54,50 @@ const RememberMe = ()=>{
 		setCheckbox(true)
 	}
 };
-
+const forgotPwd = async ()=>{
+	let config ={headers: {"Content-Type":"application/json"}};
+	let data=JSON.stringify({
+		email:resetEmail
+	});
+	axios.post('https://tmw-my-server.azurewebsites.net/forgot_password/',data,config).then((response)=>{
+		console.log(response)
+	  if(response.status===200){
+		alert(response.data.message)
+		setResetEmail('')
+		window.location.reload()
+		}else{setResetEmail('');window.location.reload();}
+	})
+};
 
 
   return (
     <div className='login'>
+		{/* Start Modal */}
+		<div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div className="modal-dialog">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="staticBackdropLabel" style={{fontWeight:700}}>Forgot Password ?</h5>
+        <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      	<div className="modal-body">
+	  		<div className="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+				<input className="input100" type="text" name="email" placeholder="Email (e.g myUser@gmail.com)" defaultValue={resetEmail} onChange={(e)=>setResetEmail(e.target.value)} />
+				<span className="focus-input100"></span>
+				<span className="symbol-input100">
+				<i className="fa fa-envelope" aria-hidden="true"></i>
+				</span>
+			</div>
+			   <small style={{paddingLeft:40}}>would you like to recieve new password? offcourse you would.</small>
+      	</div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">close</button>
+        <button type="button" className="btn btn-success" onClick={()=>forgotPwd()}>Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+{/* End Modal */}
 <div className="container-login100">
 			<div className="wrap-login100">
 				<div className="login100-pic js-tilt" data-tilt>
@@ -95,11 +136,12 @@ const RememberMe = ()=>{
 					</div>
 					<div className="text-center p-t-12">
 						<span className="txt1">
-							Forgot :
+							
 						</span>
-						<Link className="txt2" to="/forgot-pwd">
-							Username  /  Password <span> ? </span>
+						<Link className="txt2" to={'#'} data-bs-toggle="modal" data-bs-target="#staticBackdrop" >
+							Forgot  Password <span> ? </span>
 						</Link>
+
 					</div>
 
 					<div className="text-center p-t-136">

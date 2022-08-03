@@ -13,6 +13,7 @@ import TicketFinal from "./components/TicketFinal";
 import ShowFlights from './components/ShowFlights';
 import Airline from './components/pages/staff/Airline';
 import MyTickets from './components/pages/MyTickets';
+import ForgotPwd from './components/ForgotPwd';
 const App = ()=> {
 
     return (
@@ -22,13 +23,12 @@ const App = ()=> {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />}/>
             <Route path="showFlights" element={<ShowFlights />}/>
-            <Route path="login" element={<Login />} />
+            <Route path="login" element={<Login />}/> 
             <Route path="contact" element={<Contact />} />
-            <Route path="forgot-pwd" element={<Forgot />} />
             <Route path="register" element={<Register />} />
             <Route path="flights" element={<Flights />}/>
-            <Route path="flights/customerInfo" element={<CustomerInput />} />
-            <Route path="flights/ticketFinal" element={<TicketFinal />} />
+              <Route path="flights/customerInfo" element={<CustomerInput />}/>
+              <Route path="flights/ticketFinal" element={<TicketFinal />} />
             <Route path="airline" element={<Airline />} />
             <Route path='myTickets' element={<MyTickets/>}/>
             <Route path="*" element={<NoPage />} />
