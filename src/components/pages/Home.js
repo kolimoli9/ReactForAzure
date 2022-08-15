@@ -56,8 +56,8 @@ useEffect(() => {
     const config={headers:{"Content-Type": "application/json",Authorization:"Bearer "+String(token)}}
     axios.get('https://tmw-my-server.azurewebsites.net/users/',config).then((response)=>{
         if(response.status===200){
-        setUsers(response.data)}else{console.log(response)}
-    })    
+        setUsers(response.data)}
+    }).catch((error)=>{alert(error)})    
     };
     if(user.is_admin && Users.length===0){
         fetchUsers();
@@ -72,7 +72,7 @@ useEffect(() => {
        is_staff : airline,
        is_superuser : Admin, 
        airline_name : airlineName
-    });console.log('airlineName : ',airlineName)
+    });
     axios.put(`https://tmw-my-server.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
         alert(response.data.message)
     })
@@ -184,7 +184,6 @@ useEffect(() => {
 <tbody>
   
 { Users.map(( User, index ) => {
-    console.log(User)
           return (
             
             <tr key={index}>  
