@@ -5,7 +5,6 @@ import Home from "./components/pages/Home";
 import Login from "./components/pages/Login";
 import Contact from "./components/pages/Contact";
 import NoPage from "./components/pages/NoPage";
-import Forgot from "./components/pages/Forgot";
 import Register from "./components/pages/Register";
 import Flights from "./components/pages/Flights";
 import CustomerInput from "./components/CustomerInput";
