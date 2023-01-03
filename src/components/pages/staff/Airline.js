@@ -36,7 +36,7 @@ const Airline = () => {
 };
 
   const deleteFlight =async (flight)=>{
-     axios.delete(`https://tmw-my-server.azurewebsites.net/flights/${flight.id}`,config).then((response)=>{alert(JSON.stringify(response.data))});
+     axios.delete(`https://tmw-sr.azurewebsites.net/flights/${flight.id}`,config).then((response)=>{alert(JSON.stringify(response.data))});
      refreshFlights();
 };
   
@@ -47,7 +47,7 @@ const Airline = () => {
       dep_time:dep_time,
       arrival_time:arrival_time,
       tickets:tickets})
-      axios.put(`https://tmw-my-server.azurewebsites.net/flights/${flight.id}`,data,config).then((response)=>{
+      axios.put(`https://tmw-sr.azurewebsites.net/flights/${flight.id}`,data,config).then((response)=>{
        if(response.status===200){
         alert(response.data.message)
         setUpdate(false);

@@ -39,7 +39,7 @@ const Flights = () => {
   useEffect(() => {
     async function fetchCustomer(){
     let token = localStorage.getItem('token')
-            axios.get(`https://tmw-my-server.azurewebsites.net/customers/get-update/${user.id}`,{
+            axios.get(`https://tmw-sr.azurewebsites.net/customers/get-update/${user.id}`,{
                 headers:{
                   "Content-Type": "application/json",
                   Authorization:"Bearer "+String(token)

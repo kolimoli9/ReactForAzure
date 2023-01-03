@@ -15,7 +15,7 @@ const Contact = () => {
       NAME:document.getElementById('NAME').value,
       MESSAGE:document.getElementById('MESSAGE').value,
     }
-     axios.post('https://tmw-my-server.azurewebsites.net/contact/',DATA).then((response)=>{alert(response.data.message);nav('/');})
+     axios.post('https://tmw-sr.azurewebsites.net/contact/',DATA).then((response)=>{alert(response.data.message);nav('/');})
     
   };
 

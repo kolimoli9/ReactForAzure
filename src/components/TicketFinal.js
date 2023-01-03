@@ -15,13 +15,13 @@ const TicketFinal = () => {
     
 
 const refreshFlights= async ()=>{
-    let request = await fetch("https://tmw-my-server.azurewebsites.net/getflights/");
+    let request = await fetch("https://tmw-sr.azurewebsites.net/getflights/");
     let response = await request.json();
     dispatch(setFlights((response)));
 };
 const createTicket = async ()=>{
     let token = localStorage.getItem('token')
-    let ticket = await fetch('https://tmw-my-server.azurewebsites.net/tickets/',{
+    let ticket = await fetch('https://tmw-sr.azurewebsites.net/tickets/',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

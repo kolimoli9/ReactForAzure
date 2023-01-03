@@ -6,7 +6,7 @@ const Register = () => {
     //     
 const register =async()=>{
     if(document.getElementById('password').value===document.getElementById('password2').value){ 
-        let rgisteration = await fetch('https://tmw-my-server.azurewebsites.net',{
+        let rgisteration = await fetch('https://tmw-sr.azurewebsites.net',{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body:JSON.stringify({

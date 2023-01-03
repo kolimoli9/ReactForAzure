@@ -8,7 +8,7 @@ const CustomerInput = () => {
    const nav =useNavigate()
 
    const createCustomer=async()=>{
-    let Customer =await fetch(`https://tmw-my-server.azurewebsites.net/customers/`,{
+    let Customer =await fetch(`https://tmw-sr.azurewebsites.net/customers/`,{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

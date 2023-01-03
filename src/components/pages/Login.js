@@ -14,7 +14,7 @@ const Login = () => {
 	const [resetEmail, setResetEmail] = useState('')
 	
 	const getlogin = async () => {
-        let response = await fetch("https://tmw-my-server.azurewebsites.net/login/", {
+        let response = await fetch("https://tmw-sr.azurewebsites.net/login/", {
             method: "POST",
             headers: {
             "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const forgotPwd = async ()=>{
 	let data=JSON.stringify({
 		email:resetEmail
 	});
-	axios.post('https://tmw-my-server.azurewebsites.net/forgot_password/',data,config).then((response)=>{
+	axios.post('https://tmw-sr.azurewebsites.net/forgot_password/',data,config).then((response)=>{
 		console.log(response)
 	  if(response.status===200){
 		alert(response.data.message)

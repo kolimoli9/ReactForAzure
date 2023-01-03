@@ -54,7 +54,7 @@ useEffect(() => {
   async function fetchUsers(){
     const token = localStorage.getItem('token')
     const config={headers:{"Content-Type": "application/json",Authorization:"Bearer "+String(token)}}
-    axios.get('https://tmw-my-server.azurewebsites.net/users/',config).then((response)=>{
+    axios.get('https://tmw-sr.azurewebsites.net/users/',config).then((response)=>{
         if(response.status===200){
         setUsers(response.data)}
     }).catch((error)=>{alert(error)})    
@@ -73,7 +73,7 @@ useEffect(() => {
        is_superuser : Admin, 
        airline_name : airlineName
     });
-    axios.put(`https://tmw-my-server.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
+    axios.put(`https://tmw-sr.azurewebsites.net/users/${ChosenUser.id}`,data,config).then((response)=>{
         alert(response.data.message)
     })
     setEdit(false);
@@ -86,7 +86,7 @@ useEffect(() => {
 }; 
 
   const DeleteUser = async (User)=>{
-    axios.delete(`https://tmw-my-server.azurewebsites.net/users/${User.id}`,config).then((response)=>{
+    axios.delete(`https://tmw-sr.azurewebsites.net/users/${User.id}`,config).then((response)=>{
      alert(response.data.message)    
      setTimeout(function(){ setUsers([]) }, 3000);
     });
